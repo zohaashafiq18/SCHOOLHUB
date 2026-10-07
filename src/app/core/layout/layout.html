@@ -1,1 +1,24 @@
-<p>layout works!</p>
+<div class="layout">
+  <aside class="sidebar">
+    <h2 class="logo">SCHOOLHUB</h2>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/students" routerLinkActive="active">Students</a>
+      <a routerLink="/classes" routerLinkActive="active">Classes</a>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Welcome back, Admin</p>
+      </div>
+      <div class="user">Admin</div>
+    </header>
+
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
