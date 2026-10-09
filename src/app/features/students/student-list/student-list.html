@@ -1,0 +1,67 @@
+<div class="student-list">
+
+  <div class="top-bar">
+    <h2>Student List</h2>
+    <button class="add-btn" (click)="openAdd()">+ Add Student</button>
+  </div>
+
+  <input
+    class="search"
+    type="text"
+    placeholder="Search by name..."
+    [(ngModel)]="searchText"
+  >
+
+  <div class="header-row">
+    <span>Name</span>
+    <span>Class</span>
+    <span>Roll No</span>
+    <span>Status</span>
+    <span>Actions</span>
+  </div>
+
+  @for (s of filteredStudents; track $index) {
+    <app-student-card
+      [student]="s"
+      (edit)="onEdit($event)"
+      (delete)="onDelete($event)"
+    />
+  } @empty {
+    <p>Koi student nahi mila.</p>
+  }
+
+</div>
+
+<!-- Popup: Add / Edit -->
+@if (showForm) {
+  <div class="overlay" (click)="closeForm()">
+    <div class="modal" (click)="$event.stopPropagation()">
+
+      <h2>{{ editingStudent ? 'Edit Student' : 'Add New Student' }}</h2>
+
+      <label>Student Name</label>
+      <input type="text" [(ngModel)]="form.name">
+
+      <label>Father Name</label>
+      <input type="text" [(ngModel)]="form.fatherName">
+
+      <label>Class</label>
+      <input type="text" [(ngModel)]="form.className">
+
+      <label>Roll Number</label>
+      <input type="number" [(ngModel)]="form.rollNumber">
+
+      <label>Status</label>
+      <select [(ngModel)]="form.status">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" (click)="closeForm()">Cancel</button>
+        <button class="save-btn" (click)="save()">Save</button>
+      </div>
+
+    </div>
+  </div>
+}
