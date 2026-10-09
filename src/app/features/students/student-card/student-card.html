@@ -1,53 +1,13 @@
-<div class="student-card">
-
-  <!-- Card ka upar wala hissa -->
-  <div class="card-header">
-    <h2>Student Card</h2>
-    <span [class.active]="status === 'Active'">
-      {{ status }}
-    </span>
-  </div>
-
-  <!-- Student ki info -->
-  <div class="student-content">
-    <img class="student-image" [src]="imageUrl" alt="Student photo">
-
-    <div class="student-info">
-      <p><strong>Name:</strong> {{ studentName }}</p>
-      <p><strong>Father Name:</strong> {{ fatherName }}</p>
-      <p><strong>Class:</strong> {{ studentClass }}</p>
-      <p><strong>Roll No:</strong> {{ rollNumber }}</p>
-      <p><strong>Status:</strong> {{ status }}</p>
-    </div>
-  </div>
-
-  <!-- Edit form -->
-  <div class="edit-section">
-
-    <label>Student Name</label>
-    <input type="text" [(ngModel)]="studentName">
-
-    <label>Father Name</label>
-    <input type="text" [(ngModel)]="fatherName">
-
-    <label>Class</label>
-    <input type="text" [(ngModel)]="studentClass">
-
-    <label>Roll Number</label>
-    <input type="number" [(ngModel)]="rollNumber">
-
-    <label>Status</label>
-    <select [(ngModel)]="status">
-      <option value="Active">Active</option>
-      <option value="Inactive">Inactive</option>
-    </select>
-
-    <button (click)="save()">Save</button>
-
-    @if (message) {
-      <p class="success-message">{{ message }}</p>
-    }
-
-  </div>
-
+<div class="student-row">
+  <span>{{ student.name }}</span>
+  <span>{{ student.className }}</span>
+  <span>{{ student.rollNumber }}</span>
+  <span [class.active-status]="student.status === 'Active'"
+        [class.inactive-status]="student.status !== 'Active'">
+    {{ student.status }}
+  </span>
+  <span class="actions">
+    <button class="edit-btn" (click)="edit.emit(student)">Edit</button>
+    <button class="delete-btn" (click)="delete.emit(student)">Delete</button>
+  </span>
 </div>

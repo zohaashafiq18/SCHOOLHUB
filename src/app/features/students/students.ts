@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { StudentCard } from './student-card/student-card';
+import { StudentList } from './student-list/student-list';
 
 @Component({
   selector: 'app-students',
-  imports: [StudentCard],
+  imports: [StudentList],
   templateUrl: './students.html',
   styleUrl: './students.css',
 })
